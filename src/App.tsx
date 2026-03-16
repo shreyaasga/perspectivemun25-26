@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import CommitteesPage from "./pages/Committees.tsx";
 import FAQsPage from "./pages/FAQs.tsx";
 import AboutUsPage from "./pages/AboutUs.tsx";
+import TimelinePage from "./pages/Timeline.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import DelegateMascot from "./components/DelegateMascot.tsx";
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/committees" element={<CommitteesPage />} />
           <Route path="/faqs" element={<FAQsPage />} />
           <Route path="/about" element={<AboutUsPage />} />
+          <Route path="/timeline" element={<TimelinePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <DelegateMascot />

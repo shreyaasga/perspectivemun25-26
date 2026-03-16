@@ -215,11 +215,11 @@ const CommitteesPage = () => {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
-                  initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
-                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.4 }}
-                  className="glass-panel p-3 md:p-6 rounded-2xl text-center border border-primary/30 shadow-[0_0_50px_rgba(0,0,0,0.6)] bg-background/85 backdrop-blur-2xl pointer-events-auto flex flex-col justify-center items-center aspect-[4/3] md:aspect-auto"
+                  className="glass-panel p-3 md:p-6 rounded-2xl text-center border border-primary/30 shadow-2xl bg-background/90 backdrop-blur-md pointer-events-auto flex flex-col justify-center items-center aspect-[4/3] md:aspect-auto"
                 >
                   <h2 className="font-display font-bold text-base md:text-lg text-foreground mb-2 text-glow leading-snug">
                     {committees[activeIndex].name}

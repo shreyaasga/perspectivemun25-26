@@ -1,7 +1,61 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import TopNav from "@/components/TopNav";
 
+const executiveBoards = [
+    {
+        committee: "United Nations Security Council",
+        abbr: "UNSC",
+        members: [
+            { role: "Chairperson", name: "TBA" },
+            { role: "Vice Chairperson", name: "TBA" }
+        ]
+    },
+    {
+        committee: "United Nations Human Rights Council",
+        abbr: "UNHRC",
+        members: [
+            { role: "Chairperson", name: "TBA" },
+            { role: "Vice Chairperson", name: "TBA" }
+        ]
+    },
+    {
+        committee: "Disarmament and International Security",
+        abbr: "DISEC",
+        members: [
+            { role: "Chairperson", name: "TBA" },
+            { role: "Vice Chairperson", name: "TBA" }
+        ]
+    },
+    {
+        committee: "United Nations Environment Programme",
+        abbr: "UNEP",
+        members: [
+            { role: "Chairperson", name: "TBA" },
+            { role: "Vice Chairperson", name: "TBA" }
+        ]
+    },
+    {
+        committee: "All India Political Parties Meet",
+        abbr: "AIPPM",
+        members: [
+            { role: "Moderator", name: "TBA" },
+            { role: "Deputy Moderator", name: "TBA" }
+        ]
+    },
+    {
+        committee: "International Press Corps",
+        abbr: "IPC",
+        members: [
+            { role: "Editor-in-Chief", name: "TBA" },
+            { role: "Head of Photography", name: "TBA" }
+        ]
+    }
+];
+
 const AboutUsPage = () => {
+    const [activeEb, setActiveEb] = useState(0);
+
     return (
         <>
             <TopNav />
@@ -73,6 +127,57 @@ const AboutUsPage = () => {
                             <p className="font-body text-sm md:text-base text-foreground/80 leading-relaxed">
                                 Perspective MUN boasts a highly vetted, internationally recognized Executive Board capable of pushing debate boundaries. Our chairs and directors are selected based on their profound understanding of world affairs, mastery of MUN procedures, and their ability to dynamically guide debate in meaningful directions.
                             </p>
+                        </div>
+
+                        {/* Executive Board Modular View */}
+                        <div className="relative z-10 mt-8">
+                            <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-8">
+                                {executiveBoards.map((eb, index) => (
+                                    <button
+                                        key={eb.abbr}
+                                        onClick={() => setActiveEb(index)}
+                                        className={`relative px-4 py-2 rounded-full font-display text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-300 ${
+                                            activeEb === index
+                                                ? "text-primary"
+                                                : "text-muted-foreground hover:text-foreground bg-white/5"
+                                        }`}
+                                    >
+                                        {activeEb === index && (
+                                            <motion.div
+                                                layoutId="active-eb-tab"
+                                                className="absolute inset-0 border border-primary bg-primary/10 rounded-full"
+                                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                            />
+                                        )}
+                                        <span className="relative z-10">{eb.abbr}</span>
+                                    </button>
+                                ))}
+                            </div>
+
+                            <div className="relative min-h-[200px]">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={activeEb}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="p-6 md:p-8 rounded-2xl border border-primary/20 bg-background/50 focus:outline-none"
+                                    >
+                                        <h3 className="font-display font-bold text-xl md:text-2xl text-primary mb-6 text-glow">
+                                            {executiveBoards[activeEb].committee}
+                                        </h3>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            {executiveBoards[activeEb].members.map((member, mIndex) => (
+                                                <div key={mIndex} className="flex flex-col md:flex-row md:items-center justify-between bg-black/30 p-4 rounded-xl border border-white/5 gap-2">
+                                                    <span className="font-body text-xs md:text-sm font-bold text-primary/80 uppercase tracking-[0.2em]">{member.role}</span>
+                                                    <span className="font-body text-sm md:text-base text-foreground font-medium">{member.name}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                </AnimatePresence>
+                            </div>
                         </div>
                     </motion.div>
 

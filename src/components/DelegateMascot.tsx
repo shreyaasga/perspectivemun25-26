@@ -64,7 +64,7 @@ const DelegateMascot = () => {
                                     key="asking"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+                                    exit={{ opacity: 0, y: -10 }}
                                     transition={{ duration: 0.2 }}
                                     className="text-xs tracking-wide"
                                 >
@@ -73,8 +73,8 @@ const DelegateMascot = () => {
                             ) : (
                                 <motion.div
                                     key="motionCTA"
-                                    initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
-                                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: 0.1 }}
                                     className="flex flex-col gap-3 w-full"
                                 >
@@ -99,17 +99,13 @@ const DelegateMascot = () => {
                 {/* Mascot Character */}
                 <div className="absolute bottom-[4.5rem] w-16 h-20 z-10 flex flex-col items-center">
                     {/* Head */}
-                    <motion.div
-                        className="w-12 h-12 rounded-full bg-slate-200 shadow-[inset_-4px_-4px_12px_rgba(0,0,0,0.3)] relative"
-                        animate={{ rotateZ: [-2, 2, -2], y: [0, 2, 0] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    >
+                    <div className="w-12 h-12 rounded-full bg-slate-200 shadow-[inset_-4px_-4px_12px_rgba(0,0,0,0.3)] relative">
                         {/* Eyes */}
                         <div className="absolute top-4 left-3 flex gap-2">
-                            <motion.div className="w-1.5 h-2.5 bg-slate-800 rounded-full" animate={{ scaleY: [1, 0.1, 1] }} transition={{ duration: 0.2, repeat: Infinity, repeatDelay: 5 }} />
-                            <motion.div className="w-1.5 h-2.5 bg-slate-800 rounded-full" animate={{ scaleY: [1, 0.1, 1] }} transition={{ duration: 0.2, repeat: Infinity, repeatDelay: 5 }} />
+                            <div className="w-1.5 h-2.5 bg-slate-800 rounded-full" />
+                            <div className="w-1.5 h-2.5 bg-slate-800 rounded-full" />
                         </div>
-                    </motion.div>
+                    </div>
 
                     {/* Body/Suit */}
                     <div className="w-14 h-12 bg-slate-800 rounded-t-2xl shadow-lg relative overflow-hidden -mt-2 border-t border-slate-600">

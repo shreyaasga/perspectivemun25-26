@@ -77,35 +77,30 @@ const HeroSection = () => {
         {/* Word Container */}
         <div className="relative group cursor-crosshair">
           <h1
-            className="font-display font-extrabold uppercase text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-none flex justify-center flex-wrap gap-x-1 md:gap-x-2 relative z-10"
+            className="font-display font-extrabold uppercase text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-none flex justify-center flex-nowrap gap-x-0.5 sm:gap-x-1 md:gap-x-2 relative z-10"
           >
             {perspectiveText.map((char, index) => (
               <motion.span
                 key={index}
                 initial={{
                   opacity: 0,
-                  filter: "blur(20px)",
                   x: Math.random() * 400 - 200,
                   y: Math.random() * 400 - 200,
-                  backgroundPosition: "0% 50%"
                 }}
                 animate={{
                   opacity: 1,
-                  filter: "blur(0px)",
                   x: 0,
                   y: 0,
                   rotate: 0,
                   scale: 1,
-                  backgroundPosition: ["0% 50%", "200% 50%"],
                   transition: {
                     duration: 2.5,
                     delay: 0.5 + index * 0.08,
                     type: "spring",
                     bounce: 0.2,
-                    backgroundPosition: { duration: 4, repeat: Infinity, ease: "linear" }
                   }
                 }}
-                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-primary bg-[length:200%_auto]"
+                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-primary bg-[length:200%_auto] animate-gradient"
               >
                 {char}
               </motion.span>
@@ -113,18 +108,13 @@ const HeroSection = () => {
           </h1>
 
           <motion.p
-            initial={{ opacity: 0, filter: "blur(10px)", backgroundPosition: "0% 50%" }}
-            animate={{
-              opacity: 1,
-              filter: "blur(0px)",
-              backgroundPosition: ["0% 50%", "200% 50%"],
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{
               delay: 2.5,
               duration: 1.5,
-              backgroundPosition: { duration: 4, repeat: Infinity, ease: "linear" }
             }}
-            className="font-display font-bold uppercase tracking-[0.3em] inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-primary bg-[length:200%_auto] text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-4 md:tracking-[0.5em] relative text-center"
+            className="font-display font-bold uppercase tracking-[0.3em] inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-primary bg-[length:200%_auto] animate-gradient text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-4 md:tracking-[0.5em] relative text-center"
           >
             MUN
           </motion.p>
