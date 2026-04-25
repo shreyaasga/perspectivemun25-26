@@ -100,7 +100,7 @@ const HeroSection = () => {
                     bounce: 0.2,
                   }
                 }}
-                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-primary bg-[length:200%_auto] animate-gradient"
+                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#8b1a2b] to-primary bg-[length:200%_auto] animate-gradient"
               >
                 {char}
               </motion.span>
@@ -114,7 +114,7 @@ const HeroSection = () => {
               delay: 2.5,
               duration: 1.5,
             }}
-            className="font-display font-bold uppercase tracking-[0.3em] inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#a855f7] to-primary bg-[length:200%_auto] animate-gradient text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-4 md:tracking-[0.5em] relative text-center"
+            className="font-display font-bold uppercase tracking-[0.3em] inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#8b1a2b] to-primary bg-[length:200%_auto] animate-gradient text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-4 md:tracking-[0.5em] relative text-center"
           >
             MUN
           </motion.p>
