@@ -24,35 +24,25 @@ const HeroSection = () => {
     <section
       id="hero"
       ref={containerRef}
-      className="min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-12 relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center px-6 pt-16 relative overflow-hidden bg-background"
     >
-      {/* Pink glow behind hero */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 md:w-[600px] md:h-[600px] pointer-events-none"
-        style={{
-          background: "radial-gradient(circle at center, rgba(225, 29, 72, 0.15), transparent 60%)",
-          filter: "blur(80px)",
-          zIndex: 0
-        }}
-      />
+
 
       {/* Background with Ambient Particles */}
       <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-background/90" />
+
         {/* Floating Ambient Particles */}
         {ambientParticles.map((p) => (
           <motion.div
             key={`ambient-${p.id}`}
-            className="absolute top-1/2 left-1/2 rounded-full blur-[1px]"
-            style={{
-              width: p.size,
-              height: p.size,
-              background: "rgba(225, 29, 72, 0.4)"
-            }}
+            className="absolute top-1/2 left-1/2 rounded-full bg-primary/40 blur-[1px]"
+            style={{ width: p.size, height: p.size }}
             initial={{ x: `${p.x}vw`, y: `${p.y}vh`, opacity: 0 }}
             animate={{
               x: [`${p.x}vw`, `${p.x + (Math.random() * 10 - 5)}vw`, `${p.x}vw`],
               y: [`${p.y}vh`, `${p.y + (Math.random() * 10 - 5)}vh`, `${p.y}vh`],
-              opacity: [0, 0.5, 0]
+              opacity: [0, 0.8, 0]
             }}
             transition={{ duration: p.duration, repeat: Infinity, delay: p.delay, ease: "linear" }}
           />
@@ -62,18 +52,15 @@ const HeroSection = () => {
         {convergingParticles.map((p) => (
           <motion.div
             key={`converging-${p.id}`}
-            className="absolute top-1/2 left-1/2 rounded-full blur-[2px]"
-            style={{
-              width: p.size * 1.5,
-              height: p.size * 1.5,
-              background: "#E11D48",
-              boxShadow: "0 0 10px rgba(225, 29, 72, 0.6)"
-            }}
+            className="absolute top-1/2 left-1/2 rounded-full bg-primary blur-[2px] shadow-[0_0_10px_hsl(var(--blueprint-cyan))]"
+            style={{ width: p.size * 1.5, height: p.size * 1.5 }}
             initial={{ x: `${p.x * 2}vw`, y: `${p.y * 2}vh`, opacity: 0, scale: 0 }}
             animate={{ x: 0, y: 0, opacity: [0, 1, 0], scale: [0, 1.5, 0] }}
             transition={{ duration: 2, delay: 0.2 + (p.delay * 0.2), ease: "circIn" }}
           />
         ))}
+
+        <div className="absolute inset-0 bg-background/60 backdrop-blur-[1px]" />
       </div>
 
       {/* Centered Content Container */}
@@ -82,7 +69,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.8 }}
-          className="font-body text-xs md:text-sm uppercase tracking-[0.4em] text-foreground-muted mb-8"
+          className="font-body text-xs md:text-sm uppercase tracking-[0.4em] text-muted-foreground mb-6"
         >
           May 2026
         </motion.p>
@@ -90,7 +77,7 @@ const HeroSection = () => {
         {/* Word Container */}
         <div className="relative group cursor-crosshair">
           <h1
-            className="font-display font-extrabold uppercase text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-none flex justify-center flex-nowrap gap-x-1 sm:gap-x-2 md:gap-x-3 relative z-10"
+            className="font-display font-extrabold uppercase text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-none flex justify-center flex-nowrap gap-x-0.5 sm:gap-x-1 md:gap-x-2 relative z-10"
           >
             {perspectiveText.map((char, index) => (
               <motion.span
@@ -113,7 +100,7 @@ const HeroSection = () => {
                     bounce: 0.2,
                   }
                 }}
-                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-accent-primary via-accent-hover to-accent-primary bg-[length:200%_auto] animate-gradient"
+                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#8b1a2b] to-primary bg-[length:200%_auto] animate-gradient"
               >
                 {char}
               </motion.span>
@@ -127,7 +114,7 @@ const HeroSection = () => {
               delay: 2.5,
               duration: 1.5,
             }}
-            className="font-display font-bold uppercase tracking-[0.4em] inline-block bg-clip-text text-transparent bg-gradient-to-r from-accent-primary via-accent-hover to-accent-primary bg-[length:200%_auto] animate-gradient text-5xl sm:text-6xl md:text-7xl lg:text-8xl mt-6 relative text-center"
+            className="font-display font-bold uppercase tracking-[0.3em] inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#8b1a2b] to-primary bg-[length:200%_auto] animate-gradient text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-4 md:tracking-[0.5em] relative text-center"
           >
             MUN
           </motion.p>
@@ -137,26 +124,28 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.8, duration: 0.8 }}
-          className="font-body text-foreground-muted text-base md:text-lg mt-12 max-w-2xl mx-auto leading-relaxed px-4 text-center"
+          className="font-body text-muted-foreground text-sm md:text-base mt-10 max-w-lg mx-auto leading-relaxed px-4 text-center"
         >
-          A student-led conference that shapes your perspective.
+          A student led conference that shapes your perspective.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 3.2, duration: 0.8 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-14 w-full sm:w-auto"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12 w-full sm:w-auto"
         >
           <a
             href="#register"
-            className="w-full sm:w-auto relative group flex items-center justify-center btn-primary"
+            className="glow-border w-full sm:w-auto relative group flex items-center justify-center"
           >
-            Register Now
+            <span className="font-display font-bold text-xs uppercase tracking-[0.15em] text-primary-foreground bg-primary px-8 py-4 w-full h-full hover:bg-white transition-colors duration-300">
+              Register Now
+            </span>
           </a>
           <a
             href="#about"
-            className="font-body text-sm uppercase tracking-widest text-accent-primary border-b-2 border-accent-primary/40 pb-1 hover:border-accent-primary transition-all duration-300 hover:text-accent-hover w-full sm:w-auto text-center"
+            className="font-body text-xs uppercase tracking-widest text-primary border-b border-primary/40 pb-1 hover:border-primary transition-colors hover:text-white duration-300 w-full sm:w-auto mt-4 sm:mt-0"
           >
             Learn More
           </a>
