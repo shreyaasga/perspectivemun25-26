@@ -69,9 +69,9 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.8 }}
-          className="font-body text-xs md:text-sm uppercase tracking-[0.4em] text-muted-foreground mb-6"
+          className="font-body text-sm md:text-base uppercase tracking-[0.4em] text-foreground/90 mb-6"
         >
-          May 2026
+          August 2026
         </motion.p>
 
         {/* Word Container */}
@@ -100,7 +100,7 @@ const HeroSection = () => {
                     bounce: 0.2,
                   }
                 }}
-                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#8b1a2b] to-primary bg-[length:200%_auto] animate-gradient"
+                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/70 to-primary bg-[length:200%_auto] animate-gradient"
               >
                 {char}
               </motion.span>
@@ -114,7 +114,7 @@ const HeroSection = () => {
               delay: 2.5,
               duration: 1.5,
             }}
-            className="font-display font-bold uppercase tracking-[0.3em] inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-[#8b1a2b] to-primary bg-[length:200%_auto] animate-gradient text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-4 md:tracking-[0.5em] relative text-center"
+            className="font-display font-bold uppercase tracking-[0.3em] inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/70 to-primary bg-[length:200%_auto] animate-gradient text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-4 md:tracking-[0.5em] relative text-center"
           >
             MUN
           </motion.p>
@@ -124,7 +124,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.8, duration: 0.8 }}
-          className="font-body text-muted-foreground text-sm md:text-base mt-10 max-w-lg mx-auto leading-relaxed px-4 text-center"
+          className="font-body text-foreground/90 text-base md:text-lg mt-10 max-w-lg mx-auto leading-relaxed px-4 text-center"
         >
           A student led conference that shapes your perspective.
         </motion.p>

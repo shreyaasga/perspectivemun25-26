@@ -82,7 +82,7 @@ const TimelinePage = () => {
                                     }`}
                                 >
                                     {/* Icon sitting on the line */}
-                                    <div className="absolute left-[-16px] md:left-1/2 md:-translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-background border border-primary/30 shadow-[0_0_15px_rgba(var(--primary),0.3)] z-10">
+                                    <div className="absolute left-[-16px] md:left-1/2 md:-translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-background border border-primary/30 shadow-[0_0_15px_hsl(var(--primary)/0.3)] z-10">
                                         {event.completed ? (
                                             <CheckCircle2 className="w-5 h-5 text-primary" />
                                         ) : (

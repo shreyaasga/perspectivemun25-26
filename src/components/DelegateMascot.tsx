@@ -39,7 +39,7 @@ const DelegateMascot = () => {
                     e.stopPropagation();
                     setIsVisible(false);
                 }}
-                className="absolute top-0 right-0 z-50 p-1.5 bg-black/50 hover:bg-red-500/80 rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 -translate-y-4 translate-x-4"
+                className="absolute top-0 right-0 z-50 p-1.5 bg-black/50 hover:bg-primary/80 rounded-full text-white/70 hover:text-white backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 -translate-y-4 translate-x-4"
                 title="Dismiss Mascot"
             >
                 <X size={14} />
@@ -83,7 +83,7 @@ const DelegateMascot = () => {
                                     </span>
                                     <Link
                                         to={currentMotion.link}
-                                        className="bg-black text-primary text-[10px] uppercase tracking-wider py-2 px-3 rounded shadow-md hover:bg-white hover:text-black hover:scale-105 active:scale-95 transition-all duration-300 font-extrabold"
+                                        className="bg-black text-primary text-[10px] uppercase tracking-wider py-2 px-3 rounded shadow-md hover:bg-accent hover:text-accent-foreground hover:scale-105 active:scale-95 transition-all duration-300 font-extrabold"
                                     >
                                         {currentMotion.btnText}
                                     </Link>
@@ -110,7 +110,7 @@ const DelegateMascot = () => {
                     {/* Body/Suit */}
                     <div className="w-14 h-12 bg-slate-800 rounded-t-2xl shadow-lg relative overflow-hidden -mt-2 border-t border-slate-600">
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-6 bg-white rounded-b flex justify-center border-x border-slate-400">
-                            <div className="w-1.5 h-full bg-red-600 rounded-b shadow-inner" />
+                            <div className="w-1.5 h-full bg-primary rounded-b shadow-inner" />
                         </div>
                     </div>
 
@@ -145,11 +145,11 @@ const DelegateMascot = () => {
                             <div className="w-px h-full bg-white" />
                         </div>
                         {/* UN Logo Mock */}
-                        <div className="w-10 h-10 rounded-full border-2 border-sky-500/30 flex items-center justify-center bg-sky-900/40 backdrop-blur-sm z-10">
+                        <div className="w-10 h-10 rounded-full border-2 border-primary/30 flex items-center justify-center bg-primary/20 backdrop-blur-sm z-10">
                             <div className="flex gap-1.5">
-                                <div className="w-1 h-5 bg-sky-400/70 rounded-full" />
-                                <div className="w-1 h-7 bg-sky-400/90 rounded-full -mt-1" />
-                                <div className="w-1 h-5 bg-sky-400/70 rounded-full" />
+                                <div className="w-1 h-5 bg-primary/70 rounded-full" />
+                                <div className="w-1 h-7 bg-primary/90 rounded-full -mt-1" />
+                                <div className="w-1 h-5 bg-primary/70 rounded-full" />
                             </div>
                         </div>
                     </div>

@@ -58,7 +58,7 @@ const TopNav = () => {
           <div className="glow-border">
             <Link
               to="/#register"
-              className="font-display font-bold text-xs uppercase tracking-[0.15em] text-primary-foreground bg-primary px-5 py-2.5 hover:bg-white transition-colors duration-300 block"
+              className="font-display font-bold text-xs uppercase tracking-[0.15em] text-primary-foreground bg-primary px-5 py-2.5 hover:bg-accent hover:text-accent-foreground transition-colors duration-300 block"
             >
               Register
             </Link>
@@ -68,7 +68,7 @@ const TopNav = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden font-display font-bold text-xs uppercase tracking-widest text-primary hover:text-white transition-colors p-2"
+          className="md:hidden font-display font-bold text-xs uppercase tracking-widest text-primary hover:text-accent transition-colors p-2"
         >
           {open ? "Close" : "Menu"}
         </button>
