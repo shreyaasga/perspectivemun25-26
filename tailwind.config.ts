@@ -55,6 +55,9 @@ export default {
         veil: "hsl(var(--veil-grey))",
         cyan: "hsl(var(--blueprint-cyan))",
         concrete: "hsl(var(--concrete-white))",
+        rose: "hsl(var(--rose-pink))",
+        burgundy: "hsl(var(--burgundy))",
+        "warm-red": "hsl(var(--warm-red))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
