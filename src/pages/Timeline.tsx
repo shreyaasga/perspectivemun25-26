@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import TopNav from "@/components/TopNav";
-import { CheckCircle2, Circle } from "lucide-react";
+import { CircleCheck as CheckCircle2, Circle } from "lucide-react";
 
 const timelineEvents = [
     {
@@ -67,7 +67,7 @@ const TimelinePage = () => {
 
                     <div className="relative pl-8 md:pl-0">
                         {/* Vertical line passing through the middle on desktop, left on mobile */}
-                        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-primary/20 md:-translate-x-1/2"></div>
+                        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/30 via-rose/20 to-warm-red/10 md:-translate-x-1/2"></div>
                         
                         <div className="space-y-12">
                             {timelineEvents.map((event, index) => (
@@ -92,7 +92,7 @@ const TimelinePage = () => {
 
                                     {/* Content Card */}
                                     <div className={`w-full md:w-[45%] ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"} pl-8 md:pl-0`}>
-                                        <div className={`glass-panel p-6 rounded-xl border-l-4 ${event.completed ? "border-l-primary bg-primary/5" : "border-l-muted-foreground/30"}`}>
+                                        <div className={`modular-panel p-6 rounded-xl border-l-4 ${event.completed ? "border-l-primary bg-primary/5" : "border-l-rose/30"}`}>
                                             <div className="flex items-center gap-2 mb-2">
                                                 <span className="text-xs font-display tracking-wider text-primary uppercase">{event.date}</span>
                                             </div>

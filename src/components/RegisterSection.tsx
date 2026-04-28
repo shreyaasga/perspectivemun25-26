@@ -41,9 +41,9 @@ const RegisterSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.15 }}
-                  className="glass-panel p-8 md:p-10 group hover:bg-primary/5 transition-all duration-500 block h-full rounded-xl relative overflow-hidden"
+                  className="modular-panel p-8 md:p-10 group hover:bg-primary/5 transition-all duration-500 block h-full rounded-xl relative overflow-hidden"
                 >
-                  <div className="absolute top-0 left-0 w-2 h-0 bg-primary group-hover:h-full transition-all duration-500 ease-out" />
+                  <div className="absolute top-0 left-0 w-2 h-0 bg-gradient-to-b from-primary via-rose to-warm-red group-hover:h-full transition-all duration-500 ease-out" />
                   <p className="font-display font-bold text-lg uppercase tracking-wider text-primary mb-4 group-hover:text-glow transition-all">
                     {item.title}
                   </p>

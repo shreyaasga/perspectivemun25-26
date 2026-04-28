@@ -30,7 +30,9 @@ const HeroSection = () => {
 
       {/* Background with Ambient Particles */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-background/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-rose/3 to-background/90" />
+        <div className="absolute top-0 left-1/4 w-[60%] h-[40%] bg-rose-pink/5 blur-[120px] rounded-full" />
+        <div className="absolute bottom-0 right-1/4 w-[50%] h-[30%] bg-warm-red/4 blur-[100px] rounded-full" />
 
         {/* Floating Ambient Particles */}
         {ambientParticles.map((p) => (
@@ -52,7 +54,7 @@ const HeroSection = () => {
         {convergingParticles.map((p) => (
           <motion.div
             key={`converging-${p.id}`}
-            className="absolute top-1/2 left-1/2 rounded-full bg-primary blur-[2px] shadow-[0_0_10px_hsl(var(--blueprint-cyan))]"
+            className="absolute top-1/2 left-1/2 rounded-full bg-primary blur-[2px] shadow-[0_0_10px_hsl(var(--primary)),0_0_20px_hsl(var(--rose-pink)/0.3)]"
             style={{ width: p.size * 1.5, height: p.size * 1.5 }}
             initial={{ x: `${p.x * 2}vw`, y: `${p.y * 2}vh`, opacity: 0, scale: 0 }}
             animate={{ x: 0, y: 0, opacity: [0, 1, 0], scale: [0, 1.5, 0] }}
@@ -100,7 +102,7 @@ const HeroSection = () => {
                     bounce: 0.2,
                   }
                 }}
-                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/70 to-primary bg-[length:200%_auto] animate-gradient"
+                className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-rose to-warm-red bg-[length:200%_auto] animate-gradient"
               >
                 {char}
               </motion.span>
@@ -114,7 +116,7 @@ const HeroSection = () => {
               delay: 2.5,
               duration: 1.5,
             }}
-            className="font-display font-bold uppercase tracking-[0.3em] inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/70 to-primary bg-[length:200%_auto] animate-gradient text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-4 md:tracking-[0.5em] relative text-center"
+            className="font-display font-bold uppercase tracking-[0.3em] inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-rose to-warm-red bg-[length:200%_auto] animate-gradient text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-4 md:tracking-[0.5em] relative text-center"
           >
             MUN
           </motion.p>

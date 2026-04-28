@@ -91,7 +91,8 @@
 
 @layer components {
   .section-divider {
-    @apply w-full h-px bg-primary/20;
+    @apply w-full h-px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.4), hsl(var(--rose-pink) / 0.3), hsl(var(--warm-red) / 0.2), transparent);
   }
 
   .fluid-text {
@@ -122,12 +123,24 @@
     }
   }
 
-  /* Glassmorphism panels (Optimized for performance) */
+  /* Glassmorphism panels with modular accent strip */
   .glass-panel {
     @apply bg-card/70 backdrop-blur-md border border-white/10 shadow-lg;
+    position: relative;
   }
 
-  /* Glowing borders */
+  .glass-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--primary) / 0.6), hsl(var(--rose-pink) / 0.4), hsl(var(--warm-red) / 0.3), transparent);
+    border-radius: inherit;
+  }
+
+  /* Glowing borders with mixed red/pink glow */
   .glow-border {
     position: relative;
   }
@@ -136,7 +149,7 @@
     content: "";
     position: absolute;
     inset: -1px;
-    background: linear-gradient(45deg, hsl(var(--blueprint-cyan) / 0.5), transparent, hsl(var(--blueprint-cyan) / 0.5));
+    background: linear-gradient(45deg, hsl(var(--primary) / 0.5), hsl(var(--rose-pink) / 0.3), transparent, hsl(var(--warm-red) / 0.4));
     border-radius: inherit;
     z-index: -1;
     opacity: 0;
@@ -147,13 +160,105 @@
     opacity: 1;
   }
 
-  /* Text glow (Optimized for performance) */
+  /* Text glow with mixed tones */
   .text-glow {
-    text-shadow: 0 0 10px hsl(var(--blueprint-cyan) / 0.3);
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.3), 0 0 20px hsl(var(--rose-pink) / 0.15);
   }
 
   .animate-gradient {
     animation: fluid-flow 6s ease-in-out infinite;
+  }
+
+  /* Star Wars holographic scan-line overlay */
+  .holo-scanlines {
+    position: relative;
+  }
+
+  .holo-scanlines::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(var(--primary) / 0.03) 2px,
+      hsl(var(--primary) / 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+    animation: scanline-drift 8s linear infinite;
+  }
+
+  @keyframes scanline-drift {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }
+  }
+
+  /* Modular panel with colored left accent strip */
+  .modular-panel {
+    @apply bg-card/70 backdrop-blur-md border border-white/10 shadow-lg relative overflow-hidden;
+  }
+
+  .modular-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--rose-pink)), hsl(var(--warm-red)));
+  }
+
+  /* Mixed-tone heading gradient */
+  .heading-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--rose-pink)), hsl(var(--warm-red)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Subtle holographic flicker for key elements */
+  .holo-flicker {
+    animation: holo-flicker 4s ease-in-out infinite;
+  }
+
+  @keyframes holo-flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.8; }
+    94% { opacity: 1; }
+    96% { opacity: 0.9; }
+    97% { opacity: 1; }
+  }
+
+  /* Ambient glow blob for page backgrounds */
+  .ambient-glow {
+    position: relative;
+  }
+
+  .ambient-glow::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 50%;
+    height: 50%;
+    background: radial-gradient(ellipse, hsl(var(--primary) / 0.08), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ambient-glow::after {
+    content: "";
+    position: absolute;
+    bottom: -10%;
+    right: -10%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(ellipse, hsl(var(--rose-pink) / 0.06), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
   }
 }
 

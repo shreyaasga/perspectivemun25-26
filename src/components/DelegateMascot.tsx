@@ -145,11 +145,11 @@ const DelegateMascot = () => {
                             <div className="w-px h-full bg-white" />
                         </div>
                         {/* UN Logo Mock */}
-                        <div className="w-10 h-10 rounded-full border-2 border-primary/30 flex items-center justify-center bg-primary/20 backdrop-blur-sm z-10">
+                        <div className="w-10 h-10 rounded-full border-2 border-primary/30 flex items-center justify-center bg-gradient-to-br from-primary/20 to-rose/10 backdrop-blur-sm z-10">
                             <div className="flex gap-1.5">
                                 <div className="w-1 h-5 bg-primary/70 rounded-full" />
-                                <div className="w-1 h-7 bg-primary/90 rounded-full -mt-1" />
-                                <div className="w-1 h-5 bg-primary/70 rounded-full" />
+                                <div className="w-1 h-7 bg-rose/90 rounded-full -mt-1" />
+                                <div className="w-1 h-5 bg-warm-red/70 rounded-full" />
                             </div>
                         </div>
                     </div>

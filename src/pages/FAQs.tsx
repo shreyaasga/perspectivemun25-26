@@ -75,7 +75,7 @@ const FAQsPage = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className="cursor-pointer"
-                style={{ borderBottom: "1px solid hsl(var(--blueprint-cyan) / 0.15)" }}
+                style={{ borderBottom: "1px solid hsl(var(--primary) / 0.15)" }}
                 onClick={() => setOpen(open === i ? null : i)}
               >
                 <div className="flex items-center justify-between py-6">

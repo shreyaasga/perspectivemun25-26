@@ -155,6 +155,8 @@ const CommitteesPage = () => {
 
             {/* Center Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] max-w-[300px] max-h-[300px] bg-primary/20 blur-[80px] rounded-full z-0 pointer-events-none" />
+            <div className="absolute top-1/3 right-1/4 w-[30%] h-[30%] bg-rose/10 blur-[60px] rounded-full z-0 pointer-events-none" />
+            <div className="absolute bottom-1/3 left-1/4 w-[25%] h-[25%] bg-warm-red/8 blur-[50px] rounded-full z-0 pointer-events-none" />
 
             {/* Orbiting Committees */}
             <motion.div
@@ -190,7 +192,7 @@ const CommitteesPage = () => {
                           const diff = i - activeIndex;
                           changeCommittee(diff);
                         }}
-                        className={`relative flex flex-col items-center justify-center w-[56px] h-[56px] md:w-[96px] md:h-[96px] rounded-full glass-panel cursor-pointer group transition-all duration-500 border-2 ${activeIndex === i ? 'border-primary shadow-[0_0_30px_hsl(var(--blueprint-cyan)/0.6)] scale-110 z-20' : 'border-white/10 hover:border-primary/50 opacity-60 hover:opacity-100 z-10'}`}
+                        className={`relative flex flex-col items-center justify-center w-[56px] h-[56px] md:w-[96px] md:h-[96px] rounded-full modular-panel cursor-pointer group transition-all duration-500 border-2 ${activeIndex === i ? 'border-primary shadow-[0_0_30px_hsl(var(--primary)/0.6),0_0_15px_hsl(var(--rose-pink)/0.3)] scale-110 z-20' : 'border-white/10 hover:border-primary/50 opacity-60 hover:opacity-100 z-10'}`}
                         whileHover={{ scale: activeIndex === i ? 1.1 : 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -219,7 +221,7 @@ const CommitteesPage = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.4 }}
-                  className="glass-panel p-3 md:p-6 rounded-2xl text-center border border-primary/30 shadow-2xl bg-background/90 backdrop-blur-md pointer-events-auto flex flex-col justify-center items-center aspect-[4/3] md:aspect-auto"
+                  className="modular-panel p-3 md:p-6 rounded-2xl text-center border border-primary/30 shadow-2xl bg-background/90 backdrop-blur-md pointer-events-auto flex flex-col justify-center items-center aspect-[4/3] md:aspect-auto holo-scanlines"
                 >
                   <h2 className="font-display font-bold text-base md:text-lg text-foreground mb-2 text-glow leading-snug">
                     {committees[activeIndex].name}

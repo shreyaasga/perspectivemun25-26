@@ -111,9 +111,10 @@ const AboutUsPage = () => {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="relative glass-panel rounded-2xl p-8 md:p-12 mb-16 overflow-hidden"
+                        className="relative modular-panel rounded-2xl p-8 md:p-12 mb-16 overflow-hidden holo-scanlines"
                     >
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] rounded-full z-0 pointer-events-none" />
+                        <div className="absolute bottom-0 left-0 w-48 h-48 bg-rose/8 blur-[80px] rounded-full z-0 pointer-events-none" />
                         <div className="relative z-10">
                             <h2 className="font-display font-bold text-2xl md:text-3xl uppercase tracking-wider text-foreground mb-6">
                                 Our Vision
@@ -169,7 +170,7 @@ const AboutUsPage = () => {
                                         </h3>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             {executiveBoards[activeEb].members.map((member, mIndex) => (
-                                                <div key={mIndex} className="flex flex-col md:flex-row md:items-center justify-between bg-black/30 p-4 rounded-xl border border-white/5 gap-2">
+                                                <div key={mIndex} className="flex flex-col md:flex-row md:items-center justify-between bg-black/30 p-4 rounded-xl border-l-2 border-l-rose border border-white/5 gap-2">
                                                     <span className="font-body text-xs md:text-sm font-bold text-primary/80 uppercase tracking-[0.2em]">{member.role}</span>
                                                     <span className="font-body text-sm md:text-base text-foreground font-medium">{member.name}</span>
                                                 </div>

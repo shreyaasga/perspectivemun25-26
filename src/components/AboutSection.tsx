@@ -14,7 +14,7 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
             className="mb-12"
           >
-            <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl uppercase tracking-wider text-foreground mb-8 text-glow leading-tight">
+            <h2 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl uppercase tracking-wider text-foreground mb-8 heading-gradient leading-tight">
               Your Gateway to an Exceptional MUN Experience
             </h2>
             <div className="space-y-6 text-base md:text-lg">
@@ -58,9 +58,9 @@ const AboutSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               whileHover={{ y: -10 }}
-              className="glass-panel p-10 text-center rounded-xl relative group overflow-hidden"
+              className="modular-panel p-10 text-center rounded-xl relative group overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-rose/5 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="flex justify-center mb-6">
                 <stat.icon className="w-10 h-10 text-primary/60 group-hover:text-primary transition-colors duration-300" strokeWidth={1.5} />
               </div>
