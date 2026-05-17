@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useRef, useMemo } from "react";
+import { useRef } from "react";
 
 const generateParticles = (count: number) => {
   return Array.from({ length: count }).map((_, i) => ({
@@ -26,11 +26,6 @@ const generateConvergingParticles = (count: number) => {
 
 const ambientParticles = generateParticles(25);
 const convergingParticles = generateConvergingParticles(30);
-
-const charOffsets = "PERSPECTIVE".split("").map(() => ({
-  x: Math.random() * 300 - 150,
-  y: Math.random() * 300 - 150,
-}));
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -96,22 +91,15 @@ const HeroSection = () => {
             {perspectiveText.map((char, index) => (
               <motion.span
                 key={index}
-                initial={{
-                  opacity: 0,
-                  x: charOffsets[index].x,
-                  y: charOffsets[index].y,
-                }}
+                initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
                 animate={{
                   opacity: 1,
-                  x: 0,
                   y: 0,
-                  rotate: 0,
-                  scale: 1,
+                  filter: "blur(0px)",
                   transition: {
-                    duration: 2.5,
-                    delay: 0.5 + index * 0.08,
-                    type: "spring",
-                    bounce: 0.2,
+                    duration: 0.6,
+                    delay: 0.5 + index * 0.06,
+                    ease: [0.25, 0.46, 0.45, 0.94],
                   }
                 }}
                 className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-rose to-warm-red bg-[length:200%_auto] animate-gradient"
@@ -122,11 +110,12 @@ const HeroSection = () => {
           </h1>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{
-              delay: 2.5,
-              duration: 1.5,
+              delay: 1.4,
+              duration: 0.8,
+              ease: [0.25, 0.46, 0.45, 0.94],
             }}
             className="font-display font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.5em] inline-block bg-clip-text text-transparent bg-gradient-to-r from-primary via-rose to-warm-red bg-[length:200%_auto] animate-gradient text-4xl sm:text-5xl md:text-6xl lg:text-7xl mt-4 relative text-center"
           >
@@ -137,7 +126,7 @@ const HeroSection = () => {
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.8, duration: 0.8 }}
+          transition={{ delay: 2, duration: 0.8 }}
           className="font-body text-foreground/90 text-base md:text-lg mt-10 max-w-lg mx-auto leading-relaxed px-4 text-center"
         >
           A student led conference that shapes your perspective.
@@ -146,7 +135,7 @@ const HeroSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 3.2, duration: 0.8 }}
+          transition={{ delay: 2.4, duration: 0.8 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-12 w-full sm:w-auto"
         >
           <a
