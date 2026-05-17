@@ -80,16 +80,9 @@ const CommitteesPage = () => {
       const h = window.innerHeight;
       const cfg = getDeviceConfig(w, h);
 
-      // Radius = half of the larger center dimension + gap + half node size
-      const centerHalf = Math.max(cfg.centerWidth, cfg.centerHeight) / 2;
-      const nodeHalf = cfg.nodeSize / 2;
-      const minRadius = centerHalf + cfg.gap + nodeHalf;
-
-      // Also constrain by available screen space
-      const maxByWidth = (w - 40) / 2 - nodeHalf;
-      const maxByHeight = (h - 280) / 2 - nodeHalf;
-      const maxByScreen = Math.max(100, Math.min(maxByWidth, maxByHeight));
-
+      // Radius must be: (centerBox/2) + gap + (node/2)
+      const minRadius = Math.max(cfg.centerWidth, cfg.centerHeight) / 2 + cfg.gap + cfg.nodeSize / 2;
+      const maxByScreen = Math.min((w - 40) / 2, (h - 280) / 2);
       const finalRadius = Math.min(Math.max(minRadius, 100), cfg.maxRadius, maxByScreen);
 
       setConfig(cfg);
