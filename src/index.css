@@ -143,6 +143,7 @@
   /* Glowing borders with mixed red/pink glow */
   .glow-border {
     position: relative;
+    isolation: isolate;
   }
 
   .glow-border::before {
@@ -154,6 +155,7 @@
     z-index: -1;
     opacity: 0;
     transition: opacity 0.3s ease;
+    pointer-events: none;
   }
 
   .glow-border:hover::before {
@@ -187,6 +189,7 @@
     );
     pointer-events: none;
     z-index: 1;
+    will-change: background-position;
     animation: scanline-drift 8s linear infinite;
   }
 
@@ -276,4 +279,22 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary) / 0.4);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Prevent horizontal overflow on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }

@@ -74,37 +74,14 @@ const AboutUsPage = () => {
                             About Us
                         </h1>
                         <div className="h-1 w-24 bg-primary mx-auto rounded-full glow-border mb-8"></div>
-                        {(() => {
-                            const text = "Welcome to Perspective MUN, where global thinking meets localized action. We are a premier Model United Nations conference dedicated to breeding the next generation of diplomats, policymakers, and global leaders through rigorous debate and collaborative problem-solving.";
-                            return (
-                                <motion.p
-                                    className="font-body text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto"
-                                    initial="hidden"
-                                    animate="visible"
-                                    variants={{
-                                        hidden: { opacity: 1 },
-                                        visible: {
-                                            opacity: 1,
-                                            transition: {
-                                                staggerChildren: 0.02,
-                                            },
-                                        },
-                                    }}
-                                >
-                                    {text.split("").map((char, index) => (
-                                        <motion.span
-                                            key={`${char}-${index}`}
-                                            variants={{
-                                                hidden: { opacity: 0 },
-                                                visible: { opacity: 1 },
-                                            }}
-                                        >
-                                            {char}
-                                        </motion.span>
-                                    ))}
-                                </motion.p>
-                            );
-                        })()}
+                        <motion.p
+                            className="font-body text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                        >
+                            Welcome to Perspective MUN, where global thinking meets localized action. We are a premier Model United Nations conference dedicated to breeding the next generation of diplomats, policymakers, and global leaders through rigorous debate and collaborative problem-solving.
+                        </motion.p>
                     </motion.div>
 
                     <motion.div

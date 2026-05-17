@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import TopNav from "@/components/TopNav";
 
@@ -29,31 +29,13 @@ const faqs = [
   },
 ];
 
-const TypewriterText = ({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) => {
-  return (
-    <span className={className}>
-      {text.split("").map((char, index) => (
-        <motion.span
-          key={index}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.05, delay: delay + index * 0.015 }}
-          className={char === " " ? "mr-1" : "inline"}
-        >
-          {char}
-        </motion.span>
-      ))}
-    </span>
-  );
-};
-
 const FAQsPage = () => {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
     <>
       <TopNav />
-      <main className="pt-24 pb-24 px-6">
+      <main className="pt-24 pb-24 px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -63,7 +45,7 @@ const FAQsPage = () => {
           >
             FAQs
           </motion.h1>
-          <p className="font-body text-sm text-muted-foreground mb-16">
+          <p className="font-body text-sm text-muted-foreground mb-12 md:mb-16">
             Everything you need to know before the conference.
           </p>
 
@@ -78,7 +60,7 @@ const FAQsPage = () => {
                 style={{ borderBottom: "1px solid hsl(var(--primary) / 0.15)" }}
                 onClick={() => setOpen(open === i ? null : i)}
               >
-                <div className="flex items-center justify-between py-6">
+                <div className="flex items-center justify-between py-5 md:py-6">
                   <p className="font-display font-semibold text-sm md:text-base text-foreground uppercase tracking-wide pr-4">
                     {faq.q}
                   </p>
@@ -86,18 +68,21 @@ const FAQsPage = () => {
                     {open === i ? "−" : "+"}
                   </span>
                 </div>
-                {open === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="overflow-hidden"
-                  >
-                    <p className="font-body text-sm text-foreground/80 pb-6 leading-relaxed">
-                      <TypewriterText text={faq.a} delay={0.1} />
-                    </p>
-                  </motion.div>
-                )}
+                <AnimatePresence>
+                  {open === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="font-body text-sm text-foreground/80 pb-5 md:pb-6 leading-relaxed">
+                        {faq.a}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>

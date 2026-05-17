@@ -65,24 +65,24 @@ const TimelinePage = () => {
                         </p>
                     </motion.div>
 
-                    <div className="relative pl-8 md:pl-0">
-                        {/* Vertical line passing through the middle on desktop, left on mobile */}
-                        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/30 via-rose/20 to-warm-red/10 md:-translate-x-1/2"></div>
-                        
-                        <div className="space-y-12">
+                    <div className="relative md:pl-0">
+                        {/* Vertical line */}
+                        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/30 via-rose/20 to-warm-red/10 md:-translate-x-1/2"></div>
+
+                        <div className="space-y-8 md:space-y-12">
                             {timelineEvents.map((event, index) => (
                                 <motion.div
                                     key={index}
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-100px" }}
+                                    viewport={{ once: true, margin: "-50px" }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className={`relative flex flex-col md:flex-row items-center justify-between ${
+                                    className={`relative flex items-start md:items-center ${
                                         index % 2 === 0 ? "md:flex-row-reverse" : ""
                                     }`}
                                 >
                                     {/* Icon sitting on the line */}
-                                    <div className="absolute left-[-16px] md:left-1/2 md:-translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-background border border-primary/30 shadow-[0_0_15px_hsl(var(--primary)/0.3)] z-10">
+                                    <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-background border border-primary/30 shadow-[0_0_15px_hsl(var(--primary)/0.3)] z-10">
                                         {event.completed ? (
                                             <CheckCircle2 className="w-5 h-5 text-primary" />
                                         ) : (
@@ -91,15 +91,15 @@ const TimelinePage = () => {
                                     </div>
 
                                     {/* Content Card */}
-                                    <div className={`w-full md:w-[45%] ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"} pl-8 md:pl-0`}>
-                                        <div className={`modular-panel p-6 rounded-xl border-l-4 ${event.completed ? "border-l-primary bg-primary/5" : "border-l-rose/30"}`}>
+                                    <div className={`w-full md:w-[45%] pl-12 md:pl-0 ${index % 2 === 0 ? "md:pl-12" : "md:pr-12"}`}>
+                                        <div className={`modular-panel p-4 md:p-6 rounded-xl border-l-4 ${event.completed ? "border-l-primary bg-primary/5" : "border-l-rose/30"}`}>
                                             <div className="flex items-center gap-2 mb-2">
                                                 <span className="text-xs font-display tracking-wider text-primary uppercase">{event.date}</span>
                                             </div>
-                                            <h3 className="text-xl font-display font-bold uppercase tracking-wide text-foreground mb-2">
+                                            <h3 className="text-base md:text-xl font-display font-bold uppercase tracking-wide text-foreground mb-2">
                                                 {event.title}
                                             </h3>
-                                            <p className="text-sm font-body text-muted-foreground">
+                                            <p className="text-xs md:text-sm font-body text-muted-foreground leading-relaxed">
                                                 {event.description}
                                             </p>
                                         </div>
