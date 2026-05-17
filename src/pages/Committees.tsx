@@ -51,11 +51,11 @@ type DeviceSize = {
 };
 
 const deviceSizes: Record<string, DeviceSize> = {
-  small:  { nodeSize: 44, centerWidth: 130, centerHeight: 160, gap: 16, maxRadius: 130 },
-  medium: { nodeSize: 56, centerWidth: 160, centerHeight: 200, gap: 20, maxRadius: 160 },
-  tablet: { nodeSize: 80, centerWidth: 260, centerHeight: 260, gap: 28, maxRadius: 240 },
-  laptop: { nodeSize: 96, centerWidth: 320, centerHeight: 280, gap: 36, maxRadius: 320 },
-  desktop:{ nodeSize: 96, centerWidth: 340, centerHeight: 300, gap: 44, maxRadius: 360 },
+  small:  { nodeSize: 44, centerWidth: 130, centerHeight: 160, gap: 32, maxRadius: 130 },
+  medium: { nodeSize: 56, centerWidth: 160, centerHeight: 200, gap: 40, maxRadius: 160 },
+  tablet: { nodeSize: 80, centerWidth: 260, centerHeight: 260, gap: 48, maxRadius: 240 },
+  laptop: { nodeSize: 96, centerWidth: 320, centerHeight: 280, gap: 56, maxRadius: 320 },
+  desktop:{ nodeSize: 96, centerWidth: 340, centerHeight: 300, gap: 64, maxRadius: 360 },
 };
 
 const getDeviceConfig = (w: number, h: number): DeviceSize => {
