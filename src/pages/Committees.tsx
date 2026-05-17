@@ -41,10 +41,36 @@ const committees = [
   },
 ];
 
+// Device breakpoints for sizing
+type DeviceSize = {
+  nodeSize: number;       // diameter of orbiting circle buttons
+  centerWidth: number;    // width of center detail box
+  centerHeight: number;   // height of center detail box
+  gap: number;            // minimum gap between center box edge and node edge
+  maxRadius: number;      // cap on radius
+};
+
+const deviceSizes: Record<string, DeviceSize> = {
+  small:  { nodeSize: 44, centerWidth: 130, centerHeight: 160, gap: 16, maxRadius: 130 },
+  medium: { nodeSize: 56, centerWidth: 160, centerHeight: 200, gap: 20, maxRadius: 160 },
+  tablet: { nodeSize: 80, centerWidth: 260, centerHeight: 260, gap: 28, maxRadius: 240 },
+  laptop: { nodeSize: 96, centerWidth: 320, centerHeight: 280, gap: 36, maxRadius: 320 },
+  desktop:{ nodeSize: 96, centerWidth: 340, centerHeight: 300, gap: 44, maxRadius: 360 },
+};
+
+const getDeviceConfig = (w: number, h: number): DeviceSize => {
+  if (w < 400) return deviceSizes.small;
+  if (w < 768) return deviceSizes.medium;
+  if (w < 1024) return deviceSizes.tablet;
+  if (w < 1280) return deviceSizes.laptop;
+  return deviceSizes.desktop;
+};
+
 const CommitteesPage = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [rotationOffset, setRotationOffset] = useState<number>(0);
-  const [radius, setRadius] = useState<number>(280);
+  const [config, setConfig] = useState<DeviceSize>(deviceSizes.laptop);
+  const [radius, setRadius] = useState<number>(200);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
 
@@ -52,15 +78,22 @@ const CommitteesPage = () => {
     const handleResize = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      const maxRadiusByHeight = Math.max(120, (h - 280) / 2);
+      const cfg = getDeviceConfig(w, h);
 
-      let newRadius;
-      if (w < 400) newRadius = Math.min((w - 80) / 2, 110);
-      else if (w < 768) newRadius = Math.min((w - 100) / 2, 140);
-      else if (w < 1024) newRadius = 240;
-      else newRadius = 320;
+      // Radius = half of the larger center dimension + gap + half node size
+      const centerHalf = Math.max(cfg.centerWidth, cfg.centerHeight) / 2;
+      const nodeHalf = cfg.nodeSize / 2;
+      const minRadius = centerHalf + cfg.gap + nodeHalf;
 
-      setRadius(Math.min(newRadius, maxRadiusByHeight));
+      // Also constrain by available screen space
+      const maxByWidth = (w - 40) / 2 - nodeHalf;
+      const maxByHeight = (h - 280) / 2 - nodeHalf;
+      const maxByScreen = Math.max(100, Math.min(maxByWidth, maxByHeight));
+
+      const finalRadius = Math.min(Math.max(minRadius, 100), cfg.maxRadius, maxByScreen);
+
+      setConfig(cfg);
+      setRadius(finalRadius);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -98,6 +131,9 @@ const CommitteesPage = () => {
 
   const total = committees.length;
   const angleStep = 360 / total;
+  const nodePx = config.nodeSize;
+  const centerWPx = config.centerWidth;
+  const centerHPx = config.centerHeight;
 
   return (
     <>
@@ -123,7 +159,7 @@ const CommitteesPage = () => {
           {/* Orbital Wheel */}
           <div
             className="relative w-full mx-auto flex items-center justify-center shrink-0"
-            style={{ height: `${radius * 2 + 140}px` }}
+            style={{ height: `${radius * 2 + nodePx + 40}px` }}
             ref={containerRef}
           >
             {/* Background Glows */}
@@ -161,7 +197,8 @@ const CommitteesPage = () => {
                           const diff = i - activeIndex;
                           if (diff !== 0) changeCommittee(diff);
                         }}
-                        className={`relative flex flex-col items-center justify-center w-12 h-12 md:w-24 md:h-24 rounded-full modular-panel cursor-pointer group transition-all duration-500 border-2 ${
+                        style={{ width: nodePx, height: nodePx }}
+                        className={`relative flex flex-col items-center justify-center rounded-full modular-panel cursor-pointer group transition-all duration-500 border-2 ${
                           activeIndex === i
                             ? 'border-primary shadow-[0_0_30px_hsl(var(--primary)/0.6),0_0_15px_hsl(var(--rose-pink)/0.3)] scale-110 z-20'
                             : 'border-white/10 hover:border-primary/50 opacity-60 hover:opacity-100 z-10'
@@ -169,13 +206,15 @@ const CommitteesPage = () => {
                         whileHover={{ scale: activeIndex === i ? 1.1 : 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <span className={`font-display font-bold text-[8px] md:text-sm tracking-wider transition-all duration-300 ${
+                        <span className={`font-display font-bold tracking-wider transition-all duration-300 ${
+                          nodePx < 60 ? 'text-[7px]' : nodePx < 90 ? 'text-[10px]' : 'text-sm'
+                        } ${
                           activeIndex === i ? 'text-primary text-glow' : 'text-muted-foreground group-hover:text-primary group-hover:text-glow'
                         }`}>
                           {c.abbr}
                         </span>
                         {activeIndex === i && (
-                          <div className="absolute -bottom-1 md:-bottom-2 flex h-1.5 w-1.5">
+                          <div className="absolute flex h-1.5 w-1.5" style={{ bottom: nodePx < 60 ? -4 : -8 }}>
                             <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${getDifficultyColor(c.difficulty)}`}></span>
                             <span className={`relative inline-flex rounded-full h-1.5 w-1.5 ${getDifficultyColor(c.difficulty)}`}></span>
                           </div>
@@ -188,7 +227,10 @@ const CommitteesPage = () => {
             </motion.div>
 
             {/* Center Active Details */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-30 w-[75%] max-w-[150px] md:w-[85%] md:max-w-[320px]">
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-30"
+              style={{ width: centerWPx, maxWidth: centerWPx }}
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
@@ -197,8 +239,11 @@ const CommitteesPage = () => {
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.4 }}
                   className="modular-panel p-3 md:p-6 rounded-2xl text-center border border-primary/30 shadow-2xl bg-background/90 backdrop-blur-md pointer-events-auto flex flex-col justify-center items-center holo-scanlines"
+                  style={{ minHeight: centerHPx }}
                 >
-                  <h2 className="font-display font-bold text-xs md:text-lg text-foreground mb-2 text-glow leading-snug">
+                  <h2 className={`font-display font-bold text-foreground mb-2 text-glow leading-snug ${
+                    centerWPx < 160 ? 'text-[10px]' : centerWPx < 280 ? 'text-sm' : 'text-lg'
+                  }`}>
                     {committees[activeIndex].name}
                   </h2>
 
@@ -207,15 +252,21 @@ const CommitteesPage = () => {
                       <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${getDifficultyColor(committees[activeIndex].difficulty)}`}></span>
                       <span className={`relative inline-flex rounded-full h-1.5 w-1.5 ${getDifficultyColor(committees[activeIndex].difficulty)}`}></span>
                     </div>
-                    <span className="font-body text-[8px] md:text-[11px] text-muted-foreground uppercase tracking-widest">
+                    <span className={`font-body text-muted-foreground uppercase tracking-widest ${
+                      centerWPx < 160 ? 'text-[7px]' : centerWPx < 280 ? 'text-[9px]' : 'text-[11px]'
+                    }`}>
                       {committees[activeIndex].difficulty}
                     </span>
                   </div>
 
                   <div className="h-px w-full max-w-[200px] mb-2 md:mb-3 bg-primary/20" />
 
-                  <p className="font-body text-[8px] md:text-[11px] uppercase tracking-widest text-primary mb-1 md:mb-2">Agenda</p>
-                  <p className="font-body text-[9px] md:text-sm text-foreground/90 leading-relaxed">
+                  <p className={`font-body uppercase tracking-widest text-primary mb-1 md:mb-2 ${
+                    centerWPx < 160 ? 'text-[7px]' : centerWPx < 280 ? 'text-[8px]' : 'text-[11px]'
+                  }`}>Agenda</p>
+                  <p className={`font-body text-foreground/90 leading-relaxed ${
+                    centerWPx < 160 ? 'text-[8px]' : centerWPx < 280 ? 'text-[10px]' : 'text-sm'
+                  }`}>
                     {committees[activeIndex].topic}
                   </p>
                 </motion.div>
